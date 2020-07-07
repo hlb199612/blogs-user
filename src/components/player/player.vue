@@ -49,7 +49,7 @@
                     <div class="list_r">
                         <img class="music_list_bg" :src="musicImg"></img>
                         <div class="music_list_shlter" :style="{backgroundImage:'url('+shlter+')'}"></div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     <p class="music_title">{{musicTitle}}</p>
                     <p class="music_intro">歌手: {{musicName}}</p>
                     <ul class="music_words">
-                        <div class="music_words_box" :style="{top:wordsTop+'px'}">  
+                        <div class="music_words_box" :style="{top:wordsTop+'px'}">
                             <li v-for="(item,index) in musicWords" class="music_word" :class="{word_highlight:wordIndex==index}">{{item}}</li>
                         </div>
                     </ul>
@@ -83,14 +83,14 @@
                         </div>
                     </div>
                 </div>
-                    
+
                     <video id="music" autoplay="autoplay" :src="musicUrl" name="media">
                     </video>
-                    
+
             </div>
         </div>
     </div>
-    
+
 </template>
 <script>
 import { getWords,getMusicInfo,getMusicUrl,getHotMusic,getSearchSuggest } from './api/music'
@@ -155,18 +155,17 @@ export default {
     },
     mounted() {
         this.Player();
-        
-        
+
+
     },
     created() {
         this._getMusicType(3);
-        this.DisAuthorInfo();//禁删~感谢配合
     },
     computed: {
         thisMusicList(){
             return [...this.musicList].splice((this.thisListPage-1)*10,10);  //分页
         },
-        
+
     },
     watch: {
         musicSearchVal(){
@@ -184,10 +183,6 @@ export default {
         }
     },
     methods: {
-        //禁删~感谢配合
-        DisAuthorInfo(){
-            console.log("%c音乐播放器作者----仲威，博客地址：https://blogme.top", "background-color:rgb(30,30,30);border-radius:4px;font-size:12px;padding:4px;color:rgb(220,208,129);");
-        },
         MusicAlert(val){
             this.musicAlertState=true;
             this.musicAlertVal=val;
@@ -207,7 +202,7 @@ export default {
                 }else{
                     this.myMusicList.push(res.data.songs[0]);
                     //提示已经添加进去
-                    
+
                 }
                 this.MusicAlert('添加成功');
             })
@@ -233,7 +228,7 @@ export default {
                 this.thisListPage++;
             }
         },
-        ListPlay(id){   
+        ListPlay(id){
             if(this.thisMusicIndex!=id){
                 this.thisMusicIndex=id>this.musicList.length-1 ? 0 : id;
                 this._getInfo();
@@ -274,7 +269,7 @@ export default {
                     }else{//自定义库没有歌曲 提示需要搜索才可以添加
                         this.MusicAlert('没有歌曲,需要自己添加');
                     }
-                    
+
                 }else{
                     getHotMusic(id).then((res)=>{
                         this.musicList=res.data.playlist.tracks.splice(0,200);
@@ -305,7 +300,7 @@ export default {
                         }
                         this.MusicAlert(`${this.musicList[this.thisMusicIndex].name}因为一些原因不能播放`);
                         this.ListPlay(nextIndex);//寻找下一首歌  直到找到
-                        
+
                         //提示这首歌不能放
                     }else{
                         //遍历完没有找到
@@ -325,7 +320,7 @@ export default {
                         if(!res.data.nolyric){
                             let info=this.Cut(res.data.lrc.lyric);
                             this.musicWords=info.wordArr;
-                            this.wordsTime=info.timeArr;  
+                            this.wordsTime=info.timeArr;
                         }
                     })
                 }
@@ -360,7 +355,7 @@ export default {
             $('body').on('click',()=>{
                 player.play();
                 $('body').unbind('click');
-                
+
             })
             function timer(){
                 self.currentProgress=`${(player.currentTime/player.duration)*100}%`

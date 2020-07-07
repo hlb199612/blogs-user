@@ -29,16 +29,16 @@
             </div>
         </div>
     </transition>
-    <transition-group 
-    name="bolgList" 
-    tag="ul" 
+    <transition-group
+    name="bolgList"
+    tag="ul"
     class="bolg_list"
     >
         <li
-        v-for="(item,index) in BolgList" 
-        :key="item.id" 
-        :hid="item.id" 
-        :class="{bolg_click:bolg.bolgListClick==item.id}" 
+        v-for="(item,index) in BolgList"
+        :key="item.id"
+        :hid="item.id"
+        :class="{bolg_click:bolg.bolgListClick==item.id}"
         @mousedown="BolgDown"
         @mouseup="BolgUp"
         :data-index="index"
@@ -78,16 +78,16 @@
         <div class="head_left_box">
             <div class="notice_box">
                 <p class="notice_title"><Icon type="md-text"  style="line-height: 1px;margin-right: 10px;" size="20"/>最新公告</p>
-                <transition-group 
-                name="noticeList" 
-                tag="ul" 
+                <transition-group
+                name="noticeList"
+                tag="ul"
                 class="notice_list"
                 >
                 <li v-for="item in notice" :key="item.id">
                     <Icon type="md-radio-button-on" color="rgb(138,43,226)" size="10" style="line-height: 1px;" class="notice_icon"/>
                     <span class="notice_time">{{item.time}}</span>
                     <p class="notice_content">{{item.content}}</p>
-                    
+
                 </li>
                 </transition-group>
             </div>
@@ -95,9 +95,9 @@
         <div class="head_left_box" style="margin-top: 40px;">
             <div class="notice_box">
                 <p class="notice_title"><Icon type="md-happy"  style="line-height: 1px;margin-right: 10px;" size="20"/>友情链接</p>
-                <transition-group 
-                name="noticeList" 
-                tag="ul" 
+                <transition-group
+                name="noticeList"
+                tag="ul"
                 class="notice_list"
                 >
                 <li v-for="item in link" :key="item.id" style="margin-top: 8px;">
@@ -106,12 +106,12 @@
                 </transition-group>
             </div>
         </div>
-        
+
     </div>
     <div class="page" v-if="BolgList.length!=0">
         <Page :total="page.dataNum" show-total :current="page.nowPage" :page-size="page.pageNum" @on-change="PageChange"/>
     </div>
-    
+
 </div>
 </template>
 <script>
@@ -204,7 +204,7 @@ export default {
             $(window).unbind('resize');
         },
         BolgDown(el){
-            
+
             this.bolg.bolgListClick=el.currentTarget.getAttribute('hid');
             // this.$router.push('/Article/'+el.currentTarget.getAttribute('hid'));
         },
@@ -219,7 +219,7 @@ export default {
             this.search.searchOpen=false;
         },
         handleSearch(){
-           
+
         },
         PageChange(index){
             GetArticle(this.search.searchValue,(index-1)*this.page.pageNum,this.page.pageNum).then((data)=>{
@@ -227,7 +227,7 @@ export default {
                 this.$store.commit('bolgList',data.data);
                 sessionStorage.setItem('nowPage',index);
             });
-            
+
         },
         text(str){
             str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
@@ -237,10 +237,6 @@ export default {
             str = str.replace(/\s/g, ''); //将空格去掉
             return str;
         },
-        Console(){
-            console.log("%c欢迎访问 blogme.top 仲威的博客", "background-color:rgb(30,30,30);border-radius:4px;font-size:12px;padding:4px;color:rgb(220,208,129);");
-            console.log("%c大佬们不要做坏事哈~", "background-color:rgb(30,30,30);border-radius:4px;font-size:12px;padding:4px;color:rgb(24,173,121);");
-        }
     },
     computed:{
         SearchInputing(){
@@ -267,7 +263,7 @@ export default {
             }else{
                 return [];
             }
-            
+
         }
     },
     filters:{
@@ -280,11 +276,6 @@ export default {
         // GetArticle(0,10).then((data)=>{
         //     this.$store.commit('bolgList',data.data);
         // });
-        
-
-        //控制台提示
-        this.Console();
-
 
         this.Tip();
         if(sessionStorage.getItem('nowPage'))

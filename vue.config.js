@@ -1,27 +1,42 @@
 'use strict'
-// Template version: 1.3.1
-// see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
-// const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
-// const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const path = require('path');
+
+const webpack = require('webpack')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const productionGzipExtensions = ['js', 'css']
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
-  // configureWebpack: config => {
-  //   if (process.env.NODE_ENV === 'production'){
-  //     return {
-  //       plugins: [
-  //         new CompressionWebpackPlugin({
-  //           filename: '[path].gz[query]',
-  //           algorithm: 'gzip',
-  //           test: productionGzipExtensions,
-  //           threshold: 2048,
-  //           minRatio: 0.8
-  //         })
-  //       ]
-  //     }
-  //   }
-  // },
+  lintOnSave: false,
+  publicPath: process.env.VUE_APP_PAGE_CONTEXT,
+  productionSourceMap: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@i': path.resolve(__dirname, './src/assets'),
+      }
+    },
+    plugins: [
+      // 查看打包详细配置
+      // new BundleAnalyzerPlugin(),
+      // Ignore all locale files of moment.js
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+      // 配置compression-webpack-plugin压缩
+      new CompressionWebpackPlugin({
+        algorithm: 'gzip',
+        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+        threshold: 10240,
+        minRatio: 0.8
+      }),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 5,
+        minChunkSize: 100
+      })
+    ]
+  },
   devServer: {
     host: "127.0.0.1",
     port: 8080,

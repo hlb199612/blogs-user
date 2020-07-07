@@ -66,8 +66,6 @@ export default new Router({
     }
   ],
 
-
-
   scrollBehavior (to, from, savedPosition) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {

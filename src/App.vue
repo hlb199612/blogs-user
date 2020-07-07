@@ -61,7 +61,7 @@ export default {
           {id:3,name:'前端架构',to:'/Knowledge'},
           {id:5,name:'留言板',to:'/Words'},
           {id:2,name:'关于我',to:'/About'},
-          
+
           // {id:6,name:'画板',to:'/Draw'},
           // {id:4,name:'Github',to:'https://github.com/montagneme'}
         ],
@@ -158,7 +158,7 @@ export default {
         return ''
         break;
       }
-      
+
     },
   },
   watch: {
