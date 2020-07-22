@@ -137,26 +137,29 @@ export default {
       switch(this.$route.path)
       {
         case '/':
-        return 'guide_1'
-        break;
+          return 'guide_1'
+          break;
         case '/About':
-        return 'guide_2'
-        break;
+          return 'guide_2'
+          break;
         case '/Knowledge':
-        return 'guide_3'
-        break;
+          return 'guide_3'
+          break;
         case '/Words':
-        return 'guide_4'
-        break;
+          return 'guide_4'
+          break;
         case '/Draw':
-        return 'guide_1'
-        break;
+          return 'guide_1'
+          break;
         case '/Share':
-        return 'guide_4'
-        break;
+          return 'guide_4'
+          break;
+        case '/util':
+          return 'guide_4'
+          break;
         default:
-        return ''
-        break;
+          return ''
+          break;
       }
 
     },

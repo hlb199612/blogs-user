@@ -61,6 +61,14 @@ export default new Router({
       }
     },
     {
+      path:'/util',
+      name:'util',
+      component:()=>import('@/view/util/util'),
+      meta:{
+        keepAlive:true
+      }
+    },
+    {
       path:'*',
       redirect:'/Not'
     }

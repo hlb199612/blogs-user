@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import util from "../libs/util";
 import store from './store'
 import axios from 'axios'
 
@@ -24,6 +25,8 @@ Vue.prototype.$Loading.config({
   failedColor: '#f0ad4e'
 });
 
+//校验
+Vue.prototype.$r = util;
 
 /* eslint-disable no-new */
 new Vue({
@@ -41,7 +44,6 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach(route => {
   iview.LoadingBar.finish();
-
 
   //获取文章
   if(store.state.bolg.bolgList.length==0)

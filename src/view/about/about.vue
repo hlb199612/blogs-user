@@ -2,20 +2,20 @@
 <div class="box">
     <web-fire></web-fire>
     <p class="intro">
-        哟！又在写BUG呢？
+        哟！又在写BUG呢
         <br>
         路漫漫其修远兮，吾写BUG而求索。
         <br>
-        这里住着个前端小菜鸡，记录生活，分享技术，主前端，副后端。热爱媳妇儿，热爱生活，热爱编程。
+        这里住着个前端小菜鸡，记录生活，分享技术，主前端，副后端，热爱生活，热爱编程。
         <br>
         <br>
         联系作者：
         <br>
-        QQ：956661947 
+        QQ：952383184
         <br>
-        邮箱：956661947@qq.com
+        邮箱：952383184@qq.com
         <br>
-        现就读于：重庆理工大学
+        毕业于：闽江师范高等专科学校
         <br>
         <br>
         —— <span class="flag" @click="flag(false)">4月20日</span></p>
@@ -23,7 +23,7 @@
 </template>
 <script>
 import $ from 'jquery'
-import fire from '@/components/fire/fire' 
+import fire from '@/components/fire/fire'
 export default {
     data() {
         return {

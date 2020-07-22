@@ -72,7 +72,7 @@
                 <!-- <Icon type="ios-contact" size="60"/> -->
             </div>
         </Tooltip>
-        <p class="head_intro">仲威的博客</p>
+        <p class="head_intro">sucess400的博客</p>
     </div>
     <div class="head_left" :style="{top:headTop+'px',left:headLeft_2+'px'}">
         <div class="head_left_box">
